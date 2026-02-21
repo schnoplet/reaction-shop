@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reaction Image Shop</title>
+<style>
+body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
+#search { width: 100%; padding: 10px; font-size: 16px; margin-bottom: 20px; }
+#gallery { display: flex; flex-wrap: wrap; gap: 15px; }
+.card { background: white; border-radius: 8px; padding: 10px; text-align: center; width: 150px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.card img { width: 100%; border-radius: 5px; cursor: pointer; }
+.card p { margin: 5px 0 0 0; font-size: 14px; }
+button.download { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>Reaction Image Shop</h1>
+<input id="search" placeholder="Search reactions..." />
+<div id="gallery"></div>
+
+<script src="https://unpkg.com/fuse.js"></script>
+<script>
+let reactions = [];
+
+// Load the image index JSON
+fetch('images.json')
+  .then(r => r.json())
+  .then(data => {
+    reactions = data;
+    const fuse = new Fuse(reactions, { keys: ['name', 'tags'] });
+
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', e => {
+      const results = fuse.search(e.target.value).map(r => r.item);
+      renderGallery(results);
+    });
+
+    renderGallery(reactions);
+  });
+
+function renderGallery(items) {
+  const gallery = document.getElementById('gallery');
+  gallery.innerHTML = items.map(img => `
+    <div class="card">
+      <img src="images/${img.file}" alt="${img.name}" onclick="copyLink('images/${img.file}')" />
+      <p>${img.name}</p>
+      <button class="download" onclick="downloadImage('images/${img.file}', '${img.name}')">Download</button>
+    </div>
+  `).join('');
+}
+
+function copyLink(url) {
+  navigator.clipboard.writeText(window.location.origin + '/' + url);
+  alert('Copied link to clipboard!');
+}
+
+function downloadImage(url, name) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+</script>
+</body>
+</html>
