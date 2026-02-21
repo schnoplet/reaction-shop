@@ -110,7 +110,7 @@
     ]
   },
   {
-    "name": "reading",
+    "name": "Shocked Reading",
     "file": "reading.jpg",
     "tags": [
       "confused",
@@ -119,7 +119,7 @@
     ]
   },
   {
-    "name": "skeptical",
+    "name": "Skeptical white guy",
     "file": "skeptical.jpg",
     "tags": [
       "skeptical",
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "name": "sure",
+    "name": "Sure bro",
     "file": "sure.jpg",
     "tags": [
       "sure",
@@ -138,13 +138,112 @@
     ]
   },
   {
-    "name": "unchained",
+    "name": "Freedom",
     "file": "unchained.jpg",
     "tags": [
       "freedom",
       "unchained",
       "chains",
       "how i feel"
+    ]
+  },
+  {
+    "name": "Absolute Communism",
+    "file": "absolute-communism.webp",
+    "tags": [
+      "cinema"
+    ]
+  },
+  {
+    "name": "Banana Shocked",
+    "file": "banana-shocked.webp",
+    "tags": [
+      "suprised man"
+    ]
+  },
+  {
+    "name": "Clown",
+    "file": "clown.webp",
+    "tags": []
+  },
+  {
+    "name": "Hold Your Horses",
+    "file": "hold-your-horses.webp",
+    "tags": [
+      "literal",
+      "well in that case",
+      "on that note",
+      "let that sink in"
+    ]
+  },
+  {
+    "name": "Idiot Bike",
+    "file": "idiot.webp",
+    "tags": [
+      "stupid"
+    ]
+  },
+  {
+    "name": "mario-disapointment",
+    "file": "mario-disapointment.webp",
+    "tags": [
+      "mario",
+      "disappointed",
+      "idiot"
+    ]
+  },
+  {
+    "name": "No correlation",
+    "file": "no-correlation.webp",
+    "tags": [
+      "irrelevant"
+    ]
+  },
+  {
+    "name": "Ohio Impressed",
+    "file": "ohio-impressed.webp",
+    "tags": [
+      "ohio",
+      "impressed"
+    ]
+  },
+  {
+    "name": "Pepe Gross",
+    "file": "pepe-gross.webp",
+    "tags": [
+      "computer"
+    ]
+  },
+  {
+    "name": "Ragebait",
+    "file": "ragebait.webp",
+    "tags": [
+      "ragebait",
+      "spongebob"
+    ]
+  },
+  {
+    "name": "Stop talking to people",
+    "file": "stop-talking-to-people.webp",
+    "tags": [
+      "stop",
+      "talking",
+      "people",
+      "idiot"
+    ]
+  },
+  {
+    "name": "Who is that?",
+    "file": "who-is-that.webp",
+    "tags": [
+      "peppa pig"
+    ]
+  },
+  {
+    "name": "Who is he?",
+    "file": "whoishe.png",
+    "tags": [
+      "peppa pig"
     ]
   }
 ]
