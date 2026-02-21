@@ -8,12 +8,12 @@
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121212; color: #e0e0e0; padding: 20px; }
 h1 { text-align: center; margin-bottom: 30px; font-size: 2.5em; color: #ffffff; }
 #search { width: 100%; padding: 15px; font-size: 18px; margin-bottom: 30px; border-radius: 10px; border: none; outline: none; background: #1f1f1f; color: #e0e0e0; }
-#gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+#gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 15px; }
 .card { background: #1f1f2e; border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: transform 0.2s, box-shadow 0.2s; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.7); }
-.card img { width: 100%; border-radius: 10px; cursor: pointer; }
-.card p { margin: 10px 0 0 0; font-size: 16px; color: #ffffff; font-weight: bold; }
-button.download { margin-top: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; border: none; border-radius: 8px; background: #2e2e3e; color: #e0e0e0; transition: background 0.3s; }
+.card:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.6); }
+.card img { width: 100%; height: auto; max-height: 120px; border-radius: 10px; cursor: pointer; object-fit: contain; }
+.card p { margin: 8px 0 0 0; font-size: 14px; color: #ffffff; font-weight: bold; }
+button.download { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; border: none; border-radius: 8px; background: #2e2e3e; color: #e0e0e0; transition: background 0.3s; }
 button.download:hover { background: #3a3a4e; }
 </style>
 </head>
