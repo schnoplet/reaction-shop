@@ -11,7 +11,8 @@ body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
 .card { background: white; border-radius: 8px; padding: 10px; text-align: center; width: 150px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .card img { width: 100%; border-radius: 5px; cursor: pointer; }
 .card p { margin: 5px 0 0 0; font-size: 14px; }
-button.download { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+button.download, button.add { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
+#adminPanel { margin-top: 30px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 </style>
 </head>
 <body>
@@ -20,25 +21,38 @@ button.download { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: p
 <input id="search" placeholder="Search reactions..." />
 <div id="gallery"></div>
 
+<div id="adminPanel">
+  <h2>Admin: Add New Image</h2>
+  <input type="file" id="imageFile" accept="image/*" /><br><br>
+  <input type="text" id="imageName" placeholder="Name of image" /><br><br>
+  <input type="text" id="imageTags" placeholder="Tags (comma separated)" /><br><br>
+  <button class="add" onclick="addImage()">Add Image</button>
+  <p id="status"></p>
+</div>
+
 <script src="https://unpkg.com/fuse.js"></script>
 <script>
 let reactions = [];
 
-// Load the image index JSON
-fetch('images.json')
-  .then(r => r.json())
-  .then(data => {
-    reactions = data;
-    const fuse = new Fuse(reactions, { keys: ['name', 'tags'] });
+async function loadImages() {
+  try {
+    const response = await fetch('images.json');
+    if (!response.ok) throw new Error('images.json not found');
+    reactions = await response.json();
+  } catch (err) {
+    console.warn('Could not load images.json, starting with empty gallery');
+    reactions = [];
+  }
 
-    const searchInput = document.getElementById('search');
-    searchInput.addEventListener('input', e => {
-      const results = fuse.search(e.target.value).map(r => r.item);
-      renderGallery(results);
-    });
-
-    renderGallery(reactions);
+  const fuse = new Fuse(reactions, { keys: ['name', 'tags'] });
+  const searchInput = document.getElementById('search');
+  searchInput.addEventListener('input', e => {
+    const results = fuse.search(e.target.value).map(r => r.item);
+    renderGallery(results);
   });
+
+  renderGallery(reactions);
+}
 
 function renderGallery(items) {
   const gallery = document.getElementById('gallery');
@@ -64,6 +78,33 @@ function downloadImage(url, name) {
   a.click();
   document.body.removeChild(a);
 }
+
+function addImage() {
+  const fileInput = document.getElementById('imageFile');
+  const nameInput = document.getElementById('imageName');
+  const tagsInput = document.getElementById('imageTags');
+  const status = document.getElementById('status');
+
+  if (!fileInput.files[0] || !nameInput.value.trim()) {
+    status.textContent = 'Please select a file and enter a name.';
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const name = nameInput.value.trim();
+  const tags = tagsInput.value.split(',').map(t => t.trim()).filter(t => t);
+
+  // Workaround for static hosting: only simulate adding
+  reactions.push({ name: name, file: file.name, tags: tags });
+  renderGallery(reactions);
+  status.textContent = 'Image added! For permanent storage, manually update images.json.';
+
+  fileInput.value = '';
+  nameInput.value = '';
+  tagsInput.value = '';
+}
+
+loadImages();
 </script>
 </body>
 </html>

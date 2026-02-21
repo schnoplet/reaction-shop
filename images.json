@@ -1,0 +1,4 @@
+[
+  { "name": "Laugh", "file": "laugh.png", "tags": ["laugh", "funny", "haha"] },
+  { "name": "Facepalm", "file": "facepalm.gif", "tags": ["facepalm", "cringe", "fail"] }
+]
