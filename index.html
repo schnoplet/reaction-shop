@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reaction Image Shop</title>
 <style>
-body { font-family: Arial, sans-serif; background: #f0f0f0; padding: 20px; }
-#search { width: 100%; padding: 10px; font-size: 16px; margin-bottom: 20px; }
-#gallery { display: flex; flex-wrap: wrap; gap: 15px; }
-.card { background: white; border-radius: 8px; padding: 10px; text-align: center; width: 150px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.card img { width: 100%; border-radius: 5px; cursor: pointer; }
-.card p { margin: 5px 0 0 0; font-size: 14px; }
-button.download, button.add { margin-top: 5px; padding: 5px 10px; font-size: 12px; cursor: pointer; }
-#adminPanel { margin-top: 30px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e2f; color: #fff; padding: 20px; }
+h1 { text-align: center; margin-bottom: 30px; font-size: 2.5em; color: #ff7f50; text-shadow: 2px 2px #000; }
+#search { width: 100%; padding: 15px; font-size: 18px; margin-bottom: 30px; border-radius: 10px; border: none; outline: none; }
+#gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+.card { background: #2e2e3e; border-radius: 12px; padding: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.7); }
+.card img { width: 100%; border-radius: 10px; cursor: pointer; }
+.card p { margin: 10px 0 0 0; font-size: 16px; color: #ffb347; font-weight: bold; }
+button.download { margin-top: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; border: none; border-radius: 8px; background: linear-gradient(45deg, #ff7f50, #ffb347); color: #fff; transition: background 0.3s; }
+button.download:hover { background: linear-gradient(45deg, #ffb347, #ff7f50); }
 </style>
 </head>
 <body>
@@ -20,15 +22,6 @@ button.download, button.add { margin-top: 5px; padding: 5px 10px; font-size: 12p
 <h1>Reaction Image Shop</h1>
 <input id="search" placeholder="Search reactions..." />
 <div id="gallery"></div>
-
-<div id="adminPanel">
-  <h2>Admin: Add New Image</h2>
-  <input type="file" id="imageFile" accept="image/*" /><br><br>
-  <input type="text" id="imageName" placeholder="Name of image" /><br><br>
-  <input type="text" id="imageTags" placeholder="Tags (comma separated)" /><br><br>
-  <button class="add" onclick="addImage()">Add Image</button>
-  <p id="status"></p>
-</div>
 
 <script src="https://unpkg.com/fuse.js"></script>
 <script>
@@ -77,31 +70,6 @@ function downloadImage(url, name) {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-}
-
-function addImage() {
-  const fileInput = document.getElementById('imageFile');
-  const nameInput = document.getElementById('imageName');
-  const tagsInput = document.getElementById('imageTags');
-  const status = document.getElementById('status');
-
-  if (!fileInput.files[0] || !nameInput.value.trim()) {
-    status.textContent = 'Please select a file and enter a name.';
-    return;
-  }
-
-  const file = fileInput.files[0];
-  const name = nameInput.value.trim();
-  const tags = tagsInput.value.split(',').map(t => t.trim()).filter(t => t);
-
-  // Workaround for static hosting: only simulate adding
-  reactions.push({ name: name, file: file.name, tags: tags });
-  renderGallery(reactions);
-  status.textContent = 'Image added! For permanent storage, manually update images.json.';
-
-  fileInput.value = '';
-  nameInput.value = '';
-  tagsInput.value = '';
 }
 
 loadImages();
