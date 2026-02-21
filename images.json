@@ -1,4 +1,6 @@
 [
-  { "name": "Laugh", "file": "laugh.png", "tags": ["laugh", "funny", "haha"] },
-  { "name": "Facepalm", "file": "facepalm.gif", "tags": ["facepalm", "cringe", "fail"] }
+  { "name": "Statement So Poetic", "file": "statement-so-poetic.jpg", "tags": ["poetic", "statement", "dog", "gang"] },
+  { "name": "Statement So Trash", "file": "statement-so-trash.jpg", "tags": ["trash", "statement", "dog", "gang"] },
+  { "name": "Statement So Confusing", "file": "statement-so-confusing.jpg", "tags": ["confusing", "statement", "dog", "gang"] },
+  { "name": "Statement So Good", "file": "statement-so-good.jpg", "tags": ["good", "statement", "dog", "gang"] }
 ]
